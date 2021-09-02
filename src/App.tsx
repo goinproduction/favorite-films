@@ -1,8 +1,12 @@
-import './App.css'
+import './App.css';
 import Navbar from './components/Navbar';
+import ProgressContextProvider from './contexts/ProgressContext';
 function App() {
-    return <Navbar />;
+    return (
+        <ProgressContextProvider>
+            <Navbar />
+        </ProgressContextProvider>
+    );
 }
 
 export default App;
-  
