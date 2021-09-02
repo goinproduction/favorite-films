@@ -1,3 +1,8 @@
 .MuiSelect-icon {
     color: white !important;
 }
+
+.MuiTypography-h6 {
+    display: flex;
+    align-items: center;
+}
