@@ -1,4 +1,5 @@
-import { createContext, ReactNode } from 'react';
+import { createContext, ReactNode, useState } from 'react';
+
 interface ThemeContextProviderProps {
     children: ReactNode;
 }
@@ -16,8 +17,14 @@ export const ThemeContext = createContext<ThemeDefaultContext>(
 );
 
 const ThemeContextProvider = ({ children }: ThemeContextProviderProps) => {
+    const [theme, setTheme] = useState(themeDefaultContextData.theme);
+
+    const toggleTheme = (theme: string) => setTheme(theme);
+
+    const themeContextData = { theme, toggleTheme };
+
     return (
-        <ThemeContext.Provider value={themeDefaultContextData}>
+        <ThemeContext.Provider value={themeContextData}>
             {children}
         </ThemeContext.Provider>
     );
