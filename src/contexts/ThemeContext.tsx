@@ -7,10 +7,12 @@ interface ThemeContextProviderProps {
 
 interface ThemeDefaultContext {
     theme: PropTypes.Color;
+    toggleTheme: (theme: PropTypes.Color) => void;
 }
 
 const themeDefaultContextData = {
     theme: 'primary' as PropTypes.Color,
+    toggleTheme: () => {},
 };
 
 export const ThemeContext = createContext<ThemeDefaultContext>(
