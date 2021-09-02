@@ -1,16 +1,21 @@
 import './App.css';
+import Movies from './components/Movies';
 import Navbar from './components/Navbar';
 import ToggleThemeButton from './components/ToggleThemeButton';
+import MovieContextProvider from './contexts/MovieContext';
 import ProgressContextProvider from './contexts/ProgressContext';
 import ThemeContextProvider from './contexts/ThemeContext';
 function App() {
     return (
-        <ProgressContextProvider>
-            <ThemeContextProvider>
-                <Navbar />
-                <ToggleThemeButton />
-            </ThemeContextProvider>
-        </ProgressContextProvider>
+        <MovieContextProvider>
+            <ProgressContextProvider>
+                <ThemeContextProvider>
+                    <Navbar />
+                    <ToggleThemeButton />
+                    <Movies />
+                </ThemeContextProvider>
+            </ProgressContextProvider>
+        </MovieContextProvider>
     );
 }
 
