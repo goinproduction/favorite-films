@@ -1,13 +1,19 @@
 import { AuthActionType } from "./types"
 
 const {TOGGLE_AUTH} = AuthActionType;
+
 export interface AuthState{
     isAuthenticated: boolean,
     username: string
 }
 
-type AuthAction = {
-    type: AuthActionType
+// type AuthAction = {
+//     type: AuthActionType
+//     payload: string
+// }
+
+interface AuthAction{
+    type: AuthActionType,
     payload: string
 }
 
