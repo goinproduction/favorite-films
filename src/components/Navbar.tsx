@@ -14,6 +14,8 @@ import { useState, ChangeEvent, useEffect, useContext } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { ProgressContext } from '../contexts/ProgressContext';
 import { ThemeContext } from '../contexts/ThemeContext';
+import Login from './Login';
+import { AuthContext } from '../contexts/AuthContext';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -30,10 +32,14 @@ const Navbar = () => {
 
     // context
     const { lastTime, status } = useContext(ProgressContext);
-
+    const {
+        authInfo: { isAuthenticated },
+        toggleAuth,
+    } = useContext(AuthContext);
     const [position, setPosition] = useState<string>('Full-stack Developer');
     const [time, setTime] = useState<Date>(() => new Date(Date.now()));
     const { theme } = useContext(ThemeContext);
+    const [loginOpen, setLoginOpen] = useState(false);
 
     // useEffect
     useEffect(() => {
@@ -90,8 +96,18 @@ const Navbar = () => {
                                 {time.toUTCString()}
                             </Typography>
                         </Box>
-                        <Button variant='contained'>LOGIN</Button>
+                        <Button
+                            variant='contained'
+                            onClick={
+                                isAuthenticated
+                                    ? toggleAuth.bind(this, '')
+                                    : setLoginOpen.bind(this, true)
+                            }
+                        >
+                            {isAuthenticated ? 'Logout' : 'Login'}
+                        </Button>
                     </Box>
+                    <Login isOpen={loginOpen} handleClose={setLoginOpen} />
                 </Box>
             </Toolbar>
         </AppBar>

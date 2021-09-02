@@ -5,10 +5,21 @@ import {
     DialogContent,
     TextField,
 } from '@material-ui/core';
-import { ChangeEvent, useContext, useState } from 'react';
+import {
+    ChangeEvent,
+    Dispatch,
+    SetStateAction,
+    useContext,
+    useState,
+} from 'react';
 import { AuthContext } from '../contexts/AuthContext';
 
-const Login = () => {
+interface LoginProps {
+    isOpen: boolean;
+    handleClose: Dispatch<SetStateAction<boolean>>;
+}
+
+const Login = ({ isOpen, handleClose }: LoginProps) => {
     const [username, setUsername] = useState('');
 
     // context
@@ -19,9 +30,10 @@ const Login = () => {
     const onLoginSubmit = () => {
         toggleAuth(username);
         setUsername('');
+        handleClose(false);
     };
     return (
-        <Dialog open>
+        <Dialog open={isOpen} onClose={handleClose.bind(this, false)}>
             <DialogContent>
                 <TextField
                     label='Username'
@@ -34,7 +46,8 @@ const Login = () => {
                     color='primary'
                     variant='contained'
                     onClick={onLoginSubmit}
-                    disabled={username == ''}
+                    value={username}
+                    disabled={username === ''}
                 >
                     Login
                 </Button>
