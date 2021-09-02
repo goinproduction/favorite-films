@@ -13,6 +13,7 @@ import WelcomeMessage from './WelcomeMessage';
 import { useState, ChangeEvent, useEffect, useContext } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import { ProgressContext } from '../contexts/ProgressContext';
+import { ThemeContext } from '../contexts/ThemeContext';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -32,6 +33,7 @@ const Navbar = () => {
 
     const [position, setPosition] = useState<string>('Full-stack Developer');
     const [time, setTime] = useState<Date>(() => new Date(Date.now()));
+    const { theme } = useContext(ThemeContext);
 
     // useEffect
     useEffect(() => {
@@ -47,7 +49,7 @@ const Navbar = () => {
         setPosition(e.target.value as string);
     };
     return (
-        <AppBar position='static' color='primary'>
+        <AppBar position='static' color={theme}>
             <Toolbar>
                 <Box
                     display='flex'

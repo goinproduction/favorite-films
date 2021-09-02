@@ -1,3 +1,4 @@
+import { PropTypes } from '@material-ui/core';
 import { createContext, ReactNode, useState } from 'react';
 
 interface ThemeContextProviderProps {
@@ -5,11 +6,11 @@ interface ThemeContextProviderProps {
 }
 
 interface ThemeDefaultContext {
-    theme: string;
+    theme: PropTypes.Color;
 }
 
 const themeDefaultContextData = {
-    theme: 'primary',
+    theme: 'primary' as PropTypes.Color,
 };
 
 export const ThemeContext = createContext<ThemeDefaultContext>(
@@ -17,9 +18,11 @@ export const ThemeContext = createContext<ThemeDefaultContext>(
 );
 
 const ThemeContextProvider = ({ children }: ThemeContextProviderProps) => {
-    const [theme, setTheme] = useState(themeDefaultContextData.theme);
+    const [theme, setTheme] = useState<PropTypes.Color>(
+        themeDefaultContextData.theme
+    );
 
-    const toggleTheme = (theme: string) => setTheme(theme);
+    const toggleTheme = (theme: PropTypes.Color) => setTheme(theme);
 
     const themeContextData = { theme, toggleTheme };
 
