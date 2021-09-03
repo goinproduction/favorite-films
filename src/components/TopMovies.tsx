@@ -10,6 +10,8 @@ import {
     Checkbox,
 } from '@material-ui/core';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import { useContext, useEffect } from 'react';
+import { TopMovieContext } from '../contexts/TopMovieContext';
 
 const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -27,6 +29,13 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 const TopMovies = () => {
     const classes = useStyles();
+    // context
+    const { topMovies, getTopMovies } = useContext(TopMovieContext);
+
+    useEffect(() => {
+        getTopMovies();
+    }, []);
+
     return (
         <Box mt={1} ml={2}>
             <Card raised>
@@ -41,12 +50,18 @@ const TopMovies = () => {
                 />
                 <CardContent className={classes.topMoviesList}>
                     <List>
-                        <ListItem button className={classes.topMovieItem}>
-                            <ListItemIcon>
-                                <Checkbox />
-                            </ListItemIcon>
-                            <ListItemText primary='Mpvie name' />
-                        </ListItem>
+                        {topMovies.map((movie) => (
+                            <ListItem
+                                button
+                                className={classes.topMovieItem}
+                                key={movie.imdbID}
+                            >
+                                <ListItemIcon>
+                                    <Checkbox checked={movie.Watched} />
+                                </ListItemIcon>
+                                <ListItemText primary={movie.Title} />
+                            </ListItem>
+                        ))}
                     </List>
                 </CardContent>
             </Card>
