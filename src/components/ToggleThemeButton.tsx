@@ -17,10 +17,9 @@ const ToggleThemeButton = () => {
     const classes = useStyles();
 
     const { theme, toggleTheme } = useContext(ThemeContext);
-
     return (
         <Fab
-            color='primary'
+            color={theme}
             variant='extended'
             className={classes.floatBtn}
             onClick={toggleTheme.bind(

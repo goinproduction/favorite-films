@@ -24,7 +24,7 @@ const Movies = () => {
 
     // context
     const { theme } = useContext(ThemeContext);
-    const chipTheme = theme as Exclude<PropTypes.Color, 'inherit'>
+    const chipTheme = theme as Exclude<PropTypes.Color, 'inherit'>;
     const { movies, addMovie, deleteMovie } = useContext(MovieContext);
 
     const onMovieInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -43,7 +43,7 @@ const Movies = () => {
                 ></TextField>
                 <Button
                     variant='contained'
-                    color='primary'
+                    color={theme}
                     onClick={() => {
                         addMovie(movie);
                         setMovie('');
