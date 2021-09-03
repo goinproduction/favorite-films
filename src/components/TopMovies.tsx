@@ -30,7 +30,8 @@ const useStyles = makeStyles((theme: Theme) =>
 const TopMovies = () => {
     const classes = useStyles();
     // context
-    const { topMovies, getTopMovies } = useContext(TopMovieContext);
+    const { topMovies, getTopMovies, toggleWatched } =
+        useContext(TopMovieContext);
 
     useEffect(() => {
         getTopMovies();
@@ -57,7 +58,13 @@ const TopMovies = () => {
                                 key={movie.imdbID}
                             >
                                 <ListItemIcon>
-                                    <Checkbox checked={movie.Watched} />
+                                    <Checkbox
+                                        checked={movie.Watched}
+                                        onClick={toggleWatched.bind(
+                                            this,
+                                            movie.imdbID
+                                        )}
+                                    />
                                 </ListItemIcon>
                                 <ListItemText primary={movie.Title} />
                             </ListItem>
