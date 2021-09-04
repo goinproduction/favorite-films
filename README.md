@@ -3,6 +3,7 @@
     <li>Thêm, xóa phim</li>
     <li>Hiển thị top 10 bộ phim từ API</li>
     <li>Đăng nhập</li>
+    <li>Đổi màu giao diện</li>
 </ul>
 <h1>Công nghệ đã được sử dụng</h1>
 <ul>
